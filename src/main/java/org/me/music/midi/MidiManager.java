@@ -50,10 +50,12 @@ public class MidiManager {
      * @param durationMs     the length in milliseconds that the note should be played
      */
     public void play(int midiNoteNumber, int velocity, int durationMs) {
+        logger.info("Playing note " + midiNoteNumber);
         pianoChannel.noteOn(midiNoteNumber, velocity);
 
         try {
             Thread.sleep(durationMs);
+            logger.info("Turning off note " + midiNoteNumber);
             pianoChannel.noteOff(midiNoteNumber);
         } catch (InterruptedException exception) {
             logger.error("Interruption while playing note " + midiNoteNumber, exception);

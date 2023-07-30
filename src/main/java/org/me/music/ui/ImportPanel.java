@@ -4,13 +4,13 @@
 
 package org.me.music.ui;
 
+import org.me.music.constants.PlayType;
 import org.me.music.io.ImportManager;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -65,6 +65,26 @@ public class ImportPanel extends JPanel {
         File selectedFile = fileChooser.getSelectedFile();
         fileField.setText(selectedFile.getAbsolutePath());
         playFileButton.setEnabled(!fileField.getText().isBlank());
+    }
+
+    public void setPlayTypeComboBoxValue(PlayType type) {
+        switch (type) {
+            case BASE:
+                playTypeComboBox.setSelectedIndex(1);
+                break;
+            case ROTATIONAL_MAP:
+                playTypeComboBox.setSelectedIndex(2);
+                break;
+            case MOD_89_MAP:
+                playTypeComboBox.setSelectedIndex(3);
+                break;
+            case SHIFTED_ROTATIONAL_MAP:
+                playTypeComboBox.setSelectedIndex(4);
+                break;
+            default:
+                playTypeComboBox.setSelectedIndex(1);
+                break;
+        }
     }
 
     private void playFileButtonActionPerformed() {
